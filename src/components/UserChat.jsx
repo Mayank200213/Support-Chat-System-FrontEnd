@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+console.log('🚀 App using Backend URL:', BACKEND_URL);
 
 const UserChat = () => {
     const [conversation, setConversation] = useState(null);
