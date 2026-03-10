@@ -75,7 +75,13 @@ const UserChat = () => {
             }
 
         } catch (err) {
-            console.error(err);
+            console.error('❌ Chat Start Failed:', err);
+            if (err.response) {
+                console.log('Error Data:', err.response.data);
+                console.log('Error Status:', err.response.status);
+            } else if (err.request) {
+                console.log('No response received. Backend might be down or blocking CORS.');
+            }
         } finally {
             setIsLoading(false);
         }
@@ -96,7 +102,7 @@ const UserChat = () => {
             await axios.post(`${BACKEND_URL}/chat/message`, payload);
             // Backend automatically broadcasts this message, so we will receive it via socket
         } catch (err) {
-            console.error('Failed to send msg', err);
+            console.error('❌ Send Message Failed:', err.message);
         }
     };
 
